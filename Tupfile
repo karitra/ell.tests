@@ -1,0 +1,18 @@
+CXX = g++
+#CXX = clang++-4.0
+
+CXXFLAGS += -Wall
+CXXFLAGS += -std=c++1y
+CXXFLAGS += -g
+CXXFLAGS += -O2
+
+ELL_INC = /home/karapuz/prj/ya/ell/elliptics/include
+BLOC_INC = /home/karapuz/prj/ya/ell/eblob/include
+
+ELL_LIB = /home/karapuz/prj/ya/ell/elliptics/build/library
+ELL_CLI_LIB = /home/karapuz/prj/ya/ell/elliptics/build/bindings/cpp
+
+BLOB_LIB = /home/karapuz/prj/ya/ell/eblob/build/library
+
+: foreach ./src/*.cc |> $(CXX) $(CXXFLAGS) %f -o ./build/%B -L$(ELL_LIB) -L$(ELL_CLI_LIB) -L$(BLOB_LIB)  -I$(ELL_INC) -I$(BLOB_INC) -leblob -lelliptics_client |> ./build/%B
+
